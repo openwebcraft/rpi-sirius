@@ -13,7 +13,7 @@ WORKDIR /data
 
 # Fetch and install PhantomJS binary for Raspberry Pi
 RUN git clone https://github.com/piksel/phantomjs-raspberrypi.git phantomjs-raspberrypi
-RUN cp /data/phantomjs-raspberrypi/phantomjs /usr/local/bin/ && \
+RUN cp /data/phantomjs-raspberrypi/bin/phantomjs /usr/local/bin/ && \
     chmod +x /usr/local/bin/phantomjs
 
 # Fetch and sirius project
