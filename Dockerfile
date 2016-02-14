@@ -3,6 +3,7 @@ FROM hypriot/rpi-python
 
 # Install and update system package dependencies
 RUN apt-get update && apt-get install -y \
+    ca-certificates \
     git \
     libpq-dev python-dev \
     --no-install-recommends && \
