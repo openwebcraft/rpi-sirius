@@ -6,7 +6,7 @@ The image is intended for deployment on a Raspberry Pi, ARM hardware.
 
 It will `git clone` the latest and greatest of *genmon/sirius* code base, install any dependencies and start the server, exposing port `5000`.
 
-## Build and run the sirius Python server with Docker
+## Build and run the sirius Python server with Docker on Raspberry Pi
 
 Prerequisites on Raspberry Pi:
 
@@ -22,3 +22,13 @@ Build the image:
 Start a container from the image:
 
     $ docker run -d -p 5000:5000 rpi-sirius
+
+## Build and publish image to Docker Hub on Raspberry Pi
+
+    $ docker build -t matthiasg/rpi-sirius .
+
+    $ docker tag [IMAGEID] matthiasg/rpi-sirius:latest
+    
+    $ docker login --username=[DOCKER_HUB_USERNAME] --email=[DOCKER_HUB_EMAIL]
+    
+    $ docker push matthiasg/rpi-sirius
