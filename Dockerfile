@@ -5,7 +5,7 @@ FROM hypriot/rpi-python
 RUN apt-get update && apt-get install -y \
     ca-certificates \
     git \
-    libpq-dev python-dev \
+    libpq-dev python-dev python-setuptools \
     --no-install-recommends && \
     rm -rf /var/lib/apt/lists/*
 
@@ -19,6 +19,9 @@ RUN cp /data/phantomjs-raspberrypi/bin/phantomjs /usr/local/bin/ && \
 # Fetch and sirius project
 RUN git clone https://github.com/genmon/sirius.git sirius
 
+# Install virtualenv
+RUN pip install virtualenv
+
 # Create and activate a virtual environment 
 # for the sirius project and install requirements 
 RUN cd /data/sirius && \
@@ -28,12 +31,10 @@ RUN cd /data/sirius && \
     
 # Install Honcho, a python clone of Foreman.
 # For managing Procfile-based applications.
-RUN cd /data/sirius && \
-    pip install honcho
+RUN pip install honcho
 
 # To work around SSLv3 errors, try to upgrade gevent
-RUN cd /data/sirius && \
-    pip install gevent==1.0.2
+RUN pip install gevent==1.0.2
     
 # Migrate the database
 RUN cd /data/sirius && \
