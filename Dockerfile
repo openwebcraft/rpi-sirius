@@ -19,14 +19,14 @@ RUN cp /data/phantomjs-raspberrypi/bin/phantomjs /usr/local/bin/ && \
 # Fetch and sirius project
 RUN git clone https://github.com/genmon/sirius.git sirius
 
-# Install virtualenv
+# Make sure virtualenv is installed
 RUN pip install virtualenv
 
 # Create and activate a virtual environment 
 # for the sirius project and install requirements 
 RUN cd /data/sirius && \
     virtualenv venv && \
-    source venv/bin/activate && \
+    . venv/bin/activate && \
     pip install -r requirements.txt
     
 # Install Honcho, a python clone of Foreman.
