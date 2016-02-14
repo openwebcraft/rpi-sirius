@@ -22,10 +22,11 @@ RUN git clone https://github.com/genmon/sirius.git sirius
 # Make sure virtualenv is installed, likely "requirement already satisfied" anyway
 RUN pip install virtualenv
 
+WORKDIR /data/sirius
+
 # Create and activate a virtual environment 
 # for the sirius project and install requirements 
-RUN cd /data/sirius && \
-    virtualenv venv && \
+RUN virtualenv venv && \
     . venv/bin/activate && \
     pip install -r requirements.txt
     
@@ -37,8 +38,7 @@ RUN pip install honcho
 RUN pip install gevent==1.0.2
     
 # Migrate the database
-RUN cd /data/sirius && \
-    python manage.py db upgrade
+RUN ./manage.py db upgrade
 
 CMD [ "honcho", "start" ]
 
