@@ -22,8 +22,8 @@ RUN git clone https://github.com/genmon/sirius.git sirius
 # Create and activate a virtual environment 
 # for the sirius project and install requirements 
 RUN cd /data/sirius && \
-    virtualenv venv \
-    source venv/bin/activate \
+    virtualenv venv && \
+    source venv/bin/activate && \
     pip install -r requirements.txt
     
 # Install Honcho, a python clone of Foreman.
