@@ -5,7 +5,7 @@ FROM hypriot/rpi-python
 RUN apt-get update && apt-get install -y \
     ca-certificates \
     git \
-    libpq-dev python-dev python-setuptools \
+    libpq-dev python-dev python-setuptools gcc \
     --no-install-recommends && \
     rm -rf /var/lib/apt/lists/*
 
