@@ -1,5 +1,5 @@
 # Start from Hypriot crew's Python image
-FROM rpi-python
+FROM hypriot/rpi-python
 
 # Install and update system package dependencies
 RUN apt-get update && apt-get install -y \
