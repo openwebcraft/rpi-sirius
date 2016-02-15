@@ -31,11 +31,6 @@ RUN cp /data/phantomjs-raspberrypi/bin/phantomjs /usr/local/bin/ && \
 # Fetch sirius project
 RUN git clone https://github.com/genmon/sirius.git sirius
 
-# Make sure virtualenv is installed
-RUN pip install virtualenv
-
-WORKDIR /data/sirius
-
 # Create and activate a virtual environment 
 # for the sirius project and install requirements 
 RUN cd /data/sirius && \
