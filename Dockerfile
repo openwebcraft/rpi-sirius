@@ -29,7 +29,7 @@ RUN cp /data/phantomjs-raspberrypi/bin/phantomjs /usr/local/bin/ && \
     chmod +x /usr/local/bin/phantomjs
 
 # Fetch sirius project
-RUN git clone https://github.com/genmon/sirius.git sirius
+RUN git clone https://github.com/openwebcraft/sirius.git sirius
 
 # Create and activate a virtual environment 
 # for the sirius project and install requirements 
@@ -43,11 +43,6 @@ RUN cd /data/sirius && \
 RUN cd /data/sirius && \
     . venv/bin/activate && \
     pip install honcho
-
-# As a workaround for SSLv3 errors, let's upgrade gevent
-RUN cd /data/sirius && \
-    . venv/bin/activate && \
-    pip install gevent==1.0.2
     
 # Document that the service listens on port 5000.
 EXPOSE 5000
