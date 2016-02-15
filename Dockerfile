@@ -4,15 +4,9 @@ FROM hypriot/rpi-python
 RUN apt-get update && apt-get install -y \
     ca-certificates \
     git \
-    wget \
     libpq-dev python-dev python-setuptools gcc \
     --no-install-recommends && \
     rm -rf /var/lib/apt/lists/*
-
-# As a workaround for docker overlayfs bug
-# https://github.com/pypa/pip/pull/3425
-#RUN pip install --upgrade pip
-RUN wget https://bootstrap.pypa.io/ez_setup.py -O - | python
 
 WORKDIR /data
 

@@ -17,7 +17,7 @@ Build the image:
 
     $ git clone https://github.com/openwebcraft/rpi-sirius.git
     $ cd rpi-sirius 
-    $ docker build -t rpi-sirius .
+    $ docker build -no-cache -t rpi-sirius .
     
 Start a container from the image:
 
@@ -25,7 +25,7 @@ Start a container from the image:
 
 ## Build and publish image to Docker Hub on Raspberry Pi
 
-    $ docker build -t matthiasg/rpi-sirius .
+    $ docker build -no-cache -t matthiasg/rpi-sirius .
 
     $ docker tag [IMAGEID] matthiasg/rpi-sirius:latest
     
