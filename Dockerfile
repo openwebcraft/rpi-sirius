@@ -25,23 +25,27 @@ WORKDIR /data/sirius
 
 # Create and activate a virtual environment 
 # for the sirius project and install requirements 
-RUN virtualenv venv && \
+RUN cd /data/sirius && \
+    virtualenv venv && \
     . venv/bin/activate && \
     pip install -r requirements.txt
     
 # Install Honcho, a python clone of Foreman.
 # For managing Procfile-based applications.
-RUN . venv/bin/activate && \
+RUN cd /data/sirius && \
+    . venv/bin/activate && \
     pip install honcho
 
 # As a work-around for SSLv3 errors, let's upgrade gevent
-RUN . venv/bin/activate && \
+RUN cd /data/sirius && \
+    . venv/bin/activate && \
     pip install gevent==1.0.2
     
 # Document that the service listens on port 5000.
 EXPOSE 5000
 
 # Migrate the database and start the server
-ENTRYPOINT . venv/bin/activate && \
+ENTRYPOINT cd /data/sirius && \
+    . venv/bin/activate && \
     ./manage.py db upgrade && \
     honcho start
