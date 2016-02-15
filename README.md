@@ -13,11 +13,11 @@ Prerequisites on Raspberry Pi:
 - Git, e.g. on Raspbian `sudo apt-get install git`
 - Docker, e.g. [Hypriot Docker Image or Debian Packages for Raspberry Pi](http://blog.hypriot.com/downloads/)
 
-When building the image we need to build w/ `--no-cache` in order to work around a [docker overlayfs bug](https://github.com/pypa/pip/pull/3425): 
+Build the image:
 
     $ git clone https://github.com/openwebcraft/rpi-sirius.git
     $ cd rpi-sirius 
-    $ docker build --no-cache -t rpi-sirius .
+    $ docker build -t rpi-sirius .
     
 Start a container from the image:
 
@@ -25,7 +25,7 @@ Start a container from the image:
 
 ## Build and publish image to Docker Hub on Raspberry Pi
 
-    $ docker build --no-cache -t matthiasg/rpi-sirius .
+    $ docker build -t matthiasg/rpi-sirius .
 
     $ docker tag [IMAGEID] matthiasg/rpi-sirius:latest
     

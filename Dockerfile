@@ -1,13 +1,27 @@
-FROM hypriot/rpi-python
+# Pull base image
+FROM resin/rpi-raspbian:wheezy
+MAINTAINER Matthias Geisler<matthias@openwebcraft.com>
 
-# Install and update system package dependencies
+# Install and update system package dependencies and
+# in the same layer upgrade pip as a workaround for 
+# "docker overlayfs bug", https://github.com/pypa/pip/pull/3425 
+
 RUN apt-get update && apt-get install -y \
+    python \
+    python-dev \
+    python-pip \
+    python-virtualenv \
+    libpq-dev \
+    python-dev \
+    python-setuptools \ 
     ca-certificates \
-    git \
-    libpq-dev python-dev python-setuptools gcc \
+    git \ 
+    gcc \
     --no-install-recommends && \
-    rm -rf /var/lib/apt/lists/*
+    rm -rf /var/lib/apt/lists/* && \
+    pip install --upgrade pip
 
+# Define working directory
 WORKDIR /data
 
 # Fetch and install PhantomJS binary for Raspberry Pi
