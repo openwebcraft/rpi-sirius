@@ -26,7 +26,7 @@ WORKDIR /data/sirius
 # Create and activate a virtual environment 
 # for the sirius project and install requirements 
 RUN cd /data/sirius && \
-    virtualenv venv && \
+    virtualenv venv --system-site-packages && \
     . venv/bin/activate && \
     pip install -r requirements.txt
     
