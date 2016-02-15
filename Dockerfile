@@ -32,15 +32,17 @@ RUN virtualenv venv && \
     
 # Install Honcho, a python clone of Foreman.
 # For managing Procfile-based applications.
-RUN pip install honcho
+RUN . venv/bin/activate && \
+    pip install honcho
 
 # To work around SSLv3 errors, try to upgrade gevent
-RUN pip install gevent==1.0.2
+RUN . venv/bin/activate && \
+    pip install gevent==1.0.2
     
-# Migrate the database
-RUN ./manage.py db upgrade
-
-CMD [ "honcho", "start" ]
-
 # Document that the service listens on port 5000.
 EXPOSE 5000
+
+# Migrate the database and start the server
+ENTRYPOINT . venv/bin/activate && \
+    ./manage.py db upgrade && \
+    honcho start
