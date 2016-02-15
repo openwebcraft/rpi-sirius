@@ -10,7 +10,6 @@ RUN apt-get update && apt-get install -y \
     python \
     python-dev \
     python-pip \
-    python-virtualenv \
     libpq-dev \
     python-dev \
     ca-certificates \
@@ -18,7 +17,8 @@ RUN apt-get update && apt-get install -y \
     gcc \
     --no-install-recommends && \
     rm -rf /var/lib/apt/lists/* && \
-    pip install --upgrade pip
+    pip install --upgrade pip && \
+    pip install virtualenv
 
 # Define working directory
 WORKDIR /data
