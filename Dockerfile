@@ -1,4 +1,3 @@
-# Start from Hypriot crew's Python image
 FROM hypriot/rpi-python
 
 # Install and update system package dependencies
@@ -16,10 +15,10 @@ RUN git clone https://github.com/piksel/phantomjs-raspberrypi.git phantomjs-rasp
 RUN cp /data/phantomjs-raspberrypi/bin/phantomjs /usr/local/bin/ && \
     chmod +x /usr/local/bin/phantomjs
 
-# Fetch and sirius project
+# Fetch sirius project
 RUN git clone https://github.com/genmon/sirius.git sirius
 
-# Make sure virtualenv is installed, likely "requirement already satisfied" anyway
+# Make sure virtualenv is installed
 RUN pip install virtualenv
 
 WORKDIR /data/sirius
@@ -35,7 +34,7 @@ RUN virtualenv venv && \
 RUN . venv/bin/activate && \
     pip install honcho
 
-# To work around SSLv3 errors, try to upgrade gevent
+# As a work-around for SSLv3 errors, let's upgrade gevent
 RUN . venv/bin/activate && \
     pip install gevent==1.0.2
     
