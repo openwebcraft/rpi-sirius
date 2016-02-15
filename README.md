@@ -13,7 +13,7 @@ Prerequisites on Raspberry Pi:
 - Git, e.g. on Raspbian `sudo apt-get install git`
 - Docker, e.g. [Hypriot Docker Image or Debian Packages for Raspberry Pi](http://blog.hypriot.com/downloads/)
 
-Build the image:
+When building the image we need to build w/ `--no-cache` in order to work around a [docker overlayfs bug](https://github.com/pypa/pip/pull/3425): 
 
     $ git clone https://github.com/openwebcraft/rpi-sirius.git
     $ cd rpi-sirius 
