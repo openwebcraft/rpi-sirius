@@ -8,6 +8,10 @@ RUN apt-get update && apt-get install -y \
     --no-install-recommends && \
     rm -rf /var/lib/apt/lists/*
 
+# As a workaround for docker overlayfs bug
+# https://github.com/pypa/pip/pull/3425
+RUN pip install --upgrade pip
+
 WORKDIR /data
 
 # Fetch and install PhantomJS binary for Raspberry Pi
@@ -36,7 +40,7 @@ RUN cd /data/sirius && \
     . venv/bin/activate && \
     pip install honcho
 
-# As a work-around for SSLv3 errors, let's upgrade gevent
+# As a workaround for SSLv3 errors, let's upgrade gevent
 RUN cd /data/sirius && \
     . venv/bin/activate && \
     pip install gevent==1.0.2
