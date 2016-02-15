@@ -1,5 +1,5 @@
 # Pull base image
-FROM resin/rpi-raspbian:wheezy
+FROM resin/rpi-raspbian:jessie
 MAINTAINER Matthias Geisler<matthias@openwebcraft.com>
 
 # Install and update system package dependencies and
@@ -13,7 +13,6 @@ RUN apt-get update && apt-get install -y \
     python-virtualenv \
     libpq-dev \
     python-dev \
-    python-setuptools \ 
     ca-certificates \
     git \ 
     gcc \
