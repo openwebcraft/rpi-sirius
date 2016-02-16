@@ -10,6 +10,7 @@ RUN apt-get update && apt-get install -y \
     python \
     python-dev \
     python-pip \
+    python-imaging \
     libpq-dev \
     ca-certificates \
     git \ 
