@@ -11,10 +11,12 @@ RUN apt-get update && apt-get install -y \
     python-dev \
     python-pip \
     libpq-dev \
-    python-dev \
     ca-certificates \
     git \ 
     gcc \
+    libfreetype6-dev \
+    fontconfig \
+    libgstreamer0.10-dev \
     --no-install-recommends && \
     rm -rf /var/lib/apt/lists/* && \
     pip install --upgrade pip && \
@@ -23,7 +25,7 @@ RUN apt-get update && apt-get install -y \
 # Define working directory
 WORKDIR /data
 
-# Fetch and install PhantomJS binary for Raspberry Pi
+# Fetch and overwrite-install more recent version (1.9.8) of PhantomJS binary for Raspberry Pi
 RUN git clone https://github.com/piksel/phantomjs-raspberrypi.git phantomjs-raspberrypi
 RUN cp /data/phantomjs-raspberrypi/bin/phantomjs /usr/local/bin/ && \
     chmod +x /usr/local/bin/phantomjs
@@ -34,7 +36,7 @@ RUN git clone https://github.com/openwebcraft/sirius.git sirius
 # Create and activate a virtual environment 
 # for the sirius project and install requirements 
 RUN cd /data/sirius && \
-    virtualenv venv --system-site-packages && \
+    virtualenv venv && \
     . venv/bin/activate && \
     pip install -r requirements.txt
     
