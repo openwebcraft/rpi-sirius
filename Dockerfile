@@ -45,7 +45,7 @@ RUN cd /data/sirius && \
 # using PIL from system package python-imaging 
 RUN cd /data/sirius && \
     . venv/bin/activate && \
-    pip uninstall Pillow && 
+    pip uninstall Pillow 
     
 # Install Honcho, a python clone of Foreman.
 # For managing Procfile-based applications.
