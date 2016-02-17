@@ -37,9 +37,15 @@ RUN git clone https://github.com/openwebcraft/sirius.git sirius
 # Create and activate a virtual environment 
 # for the sirius project and install requirements 
 RUN cd /data/sirius && \
-    virtualenv venv && \
+    virtualenv --system-site-packages venv && \
     . venv/bin/activate && \
     pip install -r requirements.txt
+
+# Work around for "IOError: decoder zip not available":
+# using PIL from system package python-imaging 
+RUN cd /data/sirius && \
+    . venv/bin/activate && \
+    pip uninstall Pillow && 
     
 # Install Honcho, a python clone of Foreman.
 # For managing Procfile-based applications.
