@@ -43,9 +43,11 @@ RUN cd /data/sirius && \
 
 # Work around for "IOError: decoder zip not available":
 # using PIL from system package python-imaging 
+# always returning a 0 (success) exit code.
 RUN cd /data/sirius && \
     . venv/bin/activate && \
-    pip uninstall --yes Pillow
+    pip uninstall --yes Pillow \
+    ; exit 0
     
 # Install Honcho, a python clone of Foreman.
 # For managing Procfile-based applications.
